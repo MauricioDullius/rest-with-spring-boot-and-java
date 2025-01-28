@@ -11,6 +11,10 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import com.md.exceptions.ExceptionResponse;
+<<<<<<< HEAD:src/main/java/com/md/exceptions/handler/CustomizedResponseEntityExceptionHandler.java
+import com.md.exceptions.RequiredObjectIsNullException;
+=======
+>>>>>>> 0234dd3674f2f6cdbb514715e5f46a359c654436:FirstStepsInJava/rest-with-spring-boot-and-java/src/main/java/com/md/exceptions/handler/CustomizedResponseEntityExceptionHandler.java
 import com.md.exceptions.ResourceNotFoundException;
 
 @ControllerAdvice
@@ -26,6 +30,16 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
 	}
 	@ExceptionHandler(ResourceNotFoundException.class)
 	public final ResponseEntity<ExceptionResponse> handleNotFoundExceptions(Exception ex, WebRequest request ){
+<<<<<<< HEAD:src/main/java/com/md/exceptions/handler/CustomizedResponseEntityExceptionHandler.java
+		
+		ExceptionResponse exceptionResponse = new ExceptionResponse(new Date(), ex.getMessage(), request.getDescription(false));
+		
+		return new ResponseEntity<>(exceptionResponse, HttpStatus.NOT_FOUND);
+	}
+	@ExceptionHandler(RequiredObjectIsNullException.class)
+	public final ResponseEntity<ExceptionResponse> handleBadRequestExceptions(Exception ex, WebRequest request ){
+=======
+>>>>>>> 0234dd3674f2f6cdbb514715e5f46a359c654436:FirstStepsInJava/rest-with-spring-boot-and-java/src/main/java/com/md/exceptions/handler/CustomizedResponseEntityExceptionHandler.java
 		
 		ExceptionResponse exceptionResponse = new ExceptionResponse(new Date(), ex.getMessage(), request.getDescription(false));
 		

@@ -33,7 +33,7 @@ public class PersonController {
 	@Autowired
 	private PersonServices service;
 
-	@CrossOrigin(origins = "http://localhost:8080")
+	@CrossOrigin(origins = { "http://localhost:8080", "https://md2.com.br", "https://md.com.br" })
 	@GetMapping(value = "/{id}", produces = { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML,
 			MediaType.APPLICATION_YAML })
 	@Operation(summary = "Finds a Person", description = "Finds a Person", tags = { "People" }, responses = {
@@ -47,6 +47,7 @@ public class PersonController {
 		return service.findById(id);
 	}
 
+	@CrossOrigin(origins = { "http://localhost:8080", "https://md2.com.br", "https://md.com.br" })
 	@GetMapping(produces = { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YAML })
 
 	@Operation(summary = "Finds all People", description = "Finds all People", tags = { "People" }, responses = {
@@ -60,7 +61,7 @@ public class PersonController {
 		return service.findAll();
 	}
 
-	@CrossOrigin(origins = { "http://localhost:8080", "https://md.com" })
+	@CrossOrigin(origins = { "http://localhost:8080", "https://md.com","https://md2.com" })
 	@PostMapping(produces = { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML,
 			MediaType.APPLICATION_YAML }, consumes = { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML,
 					MediaType.APPLICATION_YAML })

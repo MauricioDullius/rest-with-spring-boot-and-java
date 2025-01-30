@@ -1,4 +1,4 @@
-INSERT INTO REST_WITH_SPRING_BOOT.PERSON (ADDRESS,FIRST_NAME,GENDER,LAST_NAME) VALUES
+INSERT INTO person (address,first_name,gender,last_name) VALUES
 	 ('Lajeado RS - Brasil','Maurício','Male','Dullius'),
 	 ('Lajeado RS - Brasil','Fernanda','Female','Dullius'),
 	 ('Lajeado RS - Brasil','Johnny','Male','Walker'),

@@ -8,6 +8,7 @@ import static br.com.md.mapper.ObjectMapper.parseListObjects;
 import static br.com.md.mapper.ObjectMapper.parseObject;
 import br.com.md.model.Person;
 import br.com.md.repository.PersonRepository;
+import jakarta.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +42,22 @@ public class PersonServices {
 
         var entity = repository.findById(id)
             .orElseThrow(() -> new ResourceNotFoundException("No records found for this ID!"));
+        var dto =  parseObject(entity, PersonDTO.class);
+        addHateoasLinks(dto);
+        return dto;
+    }
+
+    @Transactional
+    public PersonDTO disablePerson(Long id) {
+        logger.info("Disabling one Person!");
+
+        repository.findById(id)
+            .orElseThrow(() -> new ResourceNotFoundException("No records found for this ID!"));
+
+        repository.disablePerson(id);
+
+        var entity = repository.findById(id).get();
+
         var dto =  parseObject(entity, PersonDTO.class);
         addHateoasLinks(dto);
         return dto;
@@ -91,5 +108,6 @@ public class PersonServices {
         dto.add(linkTo(methodOn(PersonController.class).create(dto)).withRel("create").withType("POST"));
         dto.add(linkTo(methodOn(PersonController.class).update(dto)).withRel("update").withType("PUT"));
         dto.add(linkTo(methodOn(PersonController.class).delete(dto.getId())).withRel("delete").withType("DELETE"));
+        dto.add(linkTo(methodOn(PersonController.class).disablePerson(dto.getId())).withRel("disable").withType("DISABLE"));
     }
 }

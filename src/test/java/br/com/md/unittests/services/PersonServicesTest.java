@@ -246,8 +246,8 @@ class PersonServicesTest {
         verifyNoMoreInteractions(repository);
     }
 
-    @Test
     @Disabled("REASON: Still Under Development")
+    @Test
     void findAll() {
         List<Person> list = input.mockEntityList();
         when(repository.findAll()).thenReturn(list);
